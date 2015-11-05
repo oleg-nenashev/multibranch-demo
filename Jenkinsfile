@@ -1,13 +1,6 @@
 #!groovy
-// Loads: https://gist.github.com/jglick/b13b509bc236566c8829
-standardBuild {
-    environment = 'golang:1.5.0'
-    mainScript = '''
-go version
-go build -v hello-world.go
-'''
-    postScript = '''
-ls -l
-./hello-world
-'''
+node {
+  git url: 'https://github.com/jglick/simple-maven-project-with-tests.git'
+  def mvnHome = tool 'M3'
+  sh "${mvnHome}/bin/mvn -B verify"
 }
